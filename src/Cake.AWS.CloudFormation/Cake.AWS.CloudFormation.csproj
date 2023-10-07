@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net5.0;net6.0;net461</TargetFrameworks>
+        <Version>0.0.1-alpha</Version>
+        <Authors>Saravanakumar</Authors>
+        <Title>Cake.AWS.CloudFormation</Title>
+        <Description>Thin wrapper around AWS Cloudformation SDK. This package helps to easily create the Cloudformation stack in AWS cloud.</Description>
+        <PackageIcon>cake-contrib-medium.png</PackageIcon>
+        <RepositoryUrl>https://github.com/SARAVANA1501/Cake.AWS.CloudFormation</RepositoryUrl>
+        <PackageTags>cake-addin</PackageTags>
+        <SignAssembly>true</SignAssembly>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AWSSDK.CloudFormation" Version="3.7.203.43" />
+        <PackageReference Include="Cake.Core" Version="1.0.0" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="cake-contrib-medium.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+      </None>
+    </ItemGroup>
+
+</Project>

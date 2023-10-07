@@ -1,0 +1,74 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+    paths-ignore:
+      - "README.md"
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Fetch all tags and branches
+        run: git fetch --prune --unshallow
+
+      - uses: actions/setup-dotnet@v3.2.0
+        with:
+          # codecov and unittests need 2.1
+          dotnet-version: '2.1.818'
+      - uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: '3.1.414'
+      - uses: actions/setup-dotnet@v3.2.0
+        with:
+          # gitversion needs 5.0
+          dotnet-version: '5.0.402'
+      - uses: actions/setup-dotnet@v3.2.0
+        with:
+          # need at least .NET 6 to build
+          dotnet-version: '6.0.400'
+          include-prerelease: true
+
+      - name: Cache Tools
+        uses: actions/cache@v3
+        with:
+          path: tools
+          key: ${{ runner.os }}-tools-${{ hashFiles('build.cake') }}
+
+      - name: Build project
+        uses: cake-build/cake-action@v1.4.1
+        with:
+          script-path: build.cake
+          target: CI
+          verbosity: Diagnostic
+          cake-version: 1.3.0
+
+      # currently, Cake.Recipe does not upload artifacts when run on gh-actions
+      - name: Upload Issues
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: warn
+          name: ${{ matrix.os }} Issues
+          path: |
+            BuildArtifacts/report.html
+            BuildArtifacts/**/coverlet/*.xml
+
+      - name: Upload Packages
+        uses: actions/upload-artifact@v3
+        if: runner.os == 'Windows'
+        with:
+          if-no-files-found: warn
+          name: package
+          path: BuildArtifacts/Packages/**/*
