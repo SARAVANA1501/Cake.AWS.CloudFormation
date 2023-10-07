@@ -53,7 +53,7 @@ jobs:
           script-path: build.cake
           target: CI
           verbosity: Diagnostic
-          cake-version: 1.3.0
+          cake-version: 3.1.0
 
       # currently, Cake.Recipe does not upload artifacts when run on gh-actions
       - name: Upload Issues
