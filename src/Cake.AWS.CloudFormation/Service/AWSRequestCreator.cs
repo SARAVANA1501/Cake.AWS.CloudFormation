@@ -3,9 +3,9 @@ using Amazon.CloudFormation.Model;
 
 namespace Cake.AWS.CloudFormation.Service
 {
-    internal class AWSRequestCreator
+    internal static class AWSRequestCreator
     {
-        public CreateStackRequest CreateRequest(Models.CreateStackRequest createStackRequest)
+        public static CreateStackRequest CreateRequest(this Models.CreateStackRequest createStackRequest)
             => new CreateStackRequest
             {
                 Capabilities = createStackRequest.Capabilities?.ToList(),

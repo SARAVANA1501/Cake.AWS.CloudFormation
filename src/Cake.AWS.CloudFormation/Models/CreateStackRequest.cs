@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Cake.AWS.CloudFormation.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CreateStackRequest
     {
         public string[] Capabilities { get; set; }
@@ -22,5 +25,6 @@ namespace Cake.AWS.CloudFormation.Models
         public string TemplateURL { get; set; }
         public int TimeoutInMinutes { get; set; }
         public AuthenticationSettings AuthenticationSettings { get; set; }
+        public bool CanWaitForCompletion { get; set; }
     }
 }
