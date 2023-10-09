@@ -17,6 +17,7 @@ namespace Cake.AWS.CloudFormation
         /// <param name="ctx"></param>
         /// <param name="createStackRequest"></param>
         [CakeMethodAlias]
+        [CakeAliasCategory("Create cloudformation stack")]
         public static void CreateCloudFormationStack(this ICakeContext ctx, CreateStackRequest createStackRequest)
         {
             var context = new AWSCloudFormationContext(ctx, createStackRequest.AuthenticationSettings);
