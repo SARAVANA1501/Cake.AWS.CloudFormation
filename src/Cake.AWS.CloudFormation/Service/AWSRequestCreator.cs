@@ -27,7 +27,7 @@ namespace Cake.AWS.CloudFormation.Service
                     .Select(t => new Tag() { Key = t.Key, Value = t.Value }).ToList(),
                 TemplateBody = createStackRequest.TemplateBody,
                 TemplateURL = createStackRequest.TemplateURL,
-                TimeoutInMinutes = createStackRequest.TimeoutInMinutes
+                TimeoutInMinutes = createStackRequest.TimeoutInMinutes <= 0 ? 600 : createStackRequest.TimeoutInMinutes
             };
     }
 }
