@@ -23,6 +23,10 @@ Make sure the role or machine used for the deployment having following permissio
 ```
 #### Sample code
 ```
+//Installing package
+#addin nuget:?package=Cake.AWS.CloudFormation&version=x.x.x&prerelease&loaddependencies=true
+
+
 using Cake.AWS.CloudFormation.Models;
 using Cake.AWS.CloudFormation;
 
