@@ -56,30 +56,23 @@ jobs:
           verbosity: Diagnostic
           cake-version: 3.1.0
 
-      - name: Code Coverage Report
-        uses: irongut/CodeCoverageSummary@v1.3.0
-        if: runner.os == 'Linux'
+      - name: Create Test Coverage Badge
+        uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+        id: create_coverage_badge
         with:
-          filename: coverage/**/coverage.cobertura.xml
-          badge: true
-          fail_below_min: false
-          format: markdown
-          hide_branch_rate: false
-          hide_complexity: true
-          indicators: true
-          output: both
-          thresholds: '60 80'
-      - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request' && runner.os == 'Linux'
-        with:
-          recreate: true
-          path: code-coverage-results.md
+          label: Unit Test Coverage
+          color: brightgreen
+          path: tests/Cake.AWS.CloudFormation.Test/TestResults/coverage.opencover.xml
+          gist-filename: code-coverage.json
+          gist-id: 135ae9e51eab54e274bc3eaa88227333
+          gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
 
-      - name: Write to Job Summary
-        if: runner.os == 'Linux'
-        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+      - name: Print code coverage
+        run: echo "Code coverage percentage ${{steps.create_coverage_badge.outputs.percentage}}%"
 
+      - name: Print badge data
+        run: echo "Badge data ${{steps.test_step.outputs.badge}}"      
+      
       # currently, Cake.Recipe does not upload artifacts when run on gh-actions
       - name: Upload Issues
         uses: actions/upload-artifact@v3

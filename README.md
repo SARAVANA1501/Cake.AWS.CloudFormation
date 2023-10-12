@@ -2,6 +2,7 @@
 Cake add-in helps to create or update the Cloudformation stack of the AWS cloud.
 
 ![example workflow](https://github.com/SARAVANA1501/Cake.AWS.CloudFormation/actions/workflows/build.yml/badge.svg)
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/SARAVANA1501/135ae9e51eab54e274bc3eaa88227333/raw/code-coverage.json)
 
 ### How to use?
 

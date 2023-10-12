@@ -22,7 +22,7 @@ Task("Test")
     {
         Configuration = configuration,
         NoBuild = true,
-        ArgumentCustomization = args => args.Append(" --collect:\"XPlat Code Coverage\" --results-directory ./coverage")
+        ArgumentCustomization = args => args.Append(" -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover")
     });
 });
 
