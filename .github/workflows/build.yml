@@ -61,8 +61,8 @@ jobs:
         id: create_coverage_badge
         if: runner.os == 'Linux'
         with:
-          label: Unit Test Coverage
-          color: brightgreen
+          label: Test Coverage
+          color: brightorange
           path: test/Cake.AWS.CloudFormation.Test/TestResults/coverage.opencover.xml
           gist-filename: code-coverage.json
           gist-id: 135ae9e51eab54e274bc3eaa88227333
