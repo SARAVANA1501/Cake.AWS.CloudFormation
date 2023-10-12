@@ -62,7 +62,7 @@ jobs:
         if: runner.os == 'Linux'
         with:
           label: Test Coverage
-          color: brightorange
+          color: orange
           path: test/Cake.AWS.CloudFormation.Test/TestResults/coverage.opencover.xml
           gist-filename: code-coverage.json
           gist-id: 135ae9e51eab54e274bc3eaa88227333
